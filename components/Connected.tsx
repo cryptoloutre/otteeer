@@ -22,13 +22,13 @@ const Connected: FC = () => {
             noOfLines={2}
             textAlign="center"
           >
-            Welcome Otteerr Loveeer.
+            Welcome Otteeer Loveeer.
           </Heading>
 
           <Text color="bodyText" fontSize="xl" textAlign="center">
             Each otterrr is randomly generated and can be staked to receive
             <Text as="b"> $OTTY</Text> Use your <Text as="b"> $OTTY</Text> to
-            upgrade your otterrr and receive perks within the community!
+            upgrade your otteeer and receive perks within the community!
           </Text>
         </VStack>
       </Container>
