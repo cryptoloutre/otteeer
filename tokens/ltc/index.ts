@@ -57,7 +57,8 @@ async function createLtcToken(
         name: TOKEN_NAME,
         description: TOKEN_DESCRIPTION,
         image: imageUri,
-        });
+        })
+        .run();
 
     // Finding out the address where the metadata is stored
     const metadataPda = findMetadataPda(tokenMint);
