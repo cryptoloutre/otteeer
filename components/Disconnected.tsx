@@ -37,11 +37,11 @@ const Disconnected: FC = () => {
                 <Heading
                     color="white"
                     as="h1"
-                    size="xl"
-                    noOfLines={2}
+                    size="2xl"
+                    noOfLines={3}
                     textAlign="center"
                 >
-                    Mint your otteeer. Earn $OTTY. Level up.
+                    Mint your otteeer. Earn $LTC. Level up.
                 </Heading>
                 <Button
                     bgColor="accent"

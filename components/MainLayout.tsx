@@ -1,19 +1,17 @@
-import { Box, Center, Spacer, Stack } from "@chakra-ui/react"
-import type { NextPage } from "next"
+import { FC, ReactNode } from "react"
 import Head from "next/head"
 import styles from "../styles/Home.module.css"
-import NavBar from "../components/NavBar"
-import Disconnected from '../components/Disconnected'
-import Connected from "../components/Connected"
+import { Box, Center, Spacer, Stack } from "@chakra-ui/react"
+import NavBar from "./NavBar"
 import { useWallet } from "@solana/wallet-adapter-react"
 
-const Home: NextPage = () => {
-
+const MainLayout: FC<{ children: ReactNode }> = ({ children }) => {
   const { connected } = useWallet()
+
   return (
     <div className={styles.container}>
       <Head>
-        <title>Otteeer Loveeer</title>
+        <title>Buildoors</title>
         <meta name="The NFT Collection for Buildoors" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -21,14 +19,16 @@ const Home: NextPage = () => {
       <Box
         w="full"
         h="calc(100vh)"
-        bgImage={connected ? "" : "url(/home-background.png)"}
+        bgImage={connected ? "" : "url(/home-background.svg)"}
         backgroundPosition="center"
       >
         <Stack w="full" h="calc(100vh)" justify="center">
           <NavBar />
 
           <Spacer />
-          <Center>{connected ? <Connected /> : <Disconnected />}</Center>
+
+          <Center>{children}</Center>
+
           <Spacer />
 
           <Center>
@@ -38,7 +38,7 @@ const Home: NextPage = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                built with @_buildspace
+                build with @_buildspace
               </a>
             </Box>
           </Center>
@@ -48,4 +48,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default MainLayout
