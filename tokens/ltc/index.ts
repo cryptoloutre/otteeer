@@ -23,8 +23,14 @@ const TOKEN_IMAGE_PATH = `tokens/ltc/assets/${TOKEN_IMAGE_NAME}`;
 
 async function createLtcToken(
   connection: web3.Connection,
-  payer: web3.Keypair
+  payer: web3.Keypair,
+  programId: web3.PublicKey
 ) {
+
+  const [mintAuth] = await web3.PublicKey.findProgramAddress(
+    [Buffer.from("mint")],
+    programId
+  )
     // This will create a token with all the necessary inputs
     const tokenMint = await token.createMint(
         connection, // Connection
@@ -95,6 +101,15 @@ async function createLtcToken(
         [payer]
     )
 
+    await token.setAuthority(
+      connection,
+      payer,
+      tokenMint,
+      payer.publicKey,
+      token.AuthorityType.MintTokens,
+      mintAuth
+    )
+
 
     fs.writeFileSync(
       "tokens/ltc/cache.json",
@@ -112,7 +127,7 @@ async function main() {
   const connection = new web3.Connection(web3.clusterApiUrl("devnet"));
   const payer = await initializeKeypair(connection);
 
-  await createLtcToken(connection, payer);
+  await createLtcToken(connection, payer, new web3.PublicKey("Gkd7Ys1g7SWhDZpwnVfw86m11wGZe4jAmJciqujyubEZ"));
 }
 
 main()
